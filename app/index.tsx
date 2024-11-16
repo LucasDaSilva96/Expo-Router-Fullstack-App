@@ -17,11 +17,27 @@ export default function HomePage() {
         </Text>
       </View>
 
-      <View className='flex-1 p-2'>
+      <View className='flex-1 p-2 gap-4'>
         <Link href={'/privacy'} asChild>
           <TouchableOpacity className='bg-black py-3 rounded-md'>
             <Text className='text-center text-lg font-semibold text-slate-50'>
               Privacy Policy
+            </Text>
+          </TouchableOpacity>
+        </Link>
+
+        <Link href={'/register'} asChild>
+          <TouchableOpacity className='bg-black py-3 rounded-md'>
+            <Text className='text-center text-lg font-semibold text-slate-50'>
+              Register
+            </Text>
+          </TouchableOpacity>
+        </Link>
+
+        <Link href={'/(authenticated)'} asChild>
+          <TouchableOpacity className='bg-black py-3 rounded-md'>
+            <Text className='text-center text-lg font-semibold text-slate-50'>
+              Login
             </Text>
           </TouchableOpacity>
         </Link>

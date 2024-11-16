@@ -40,9 +40,7 @@ export function InitialLayout() {
 
   return (
     <>
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: Colors.background, paddingTop: 8 }}
-      >
+      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background }}>
         <StatusBar style='light' />
         <Stack
           screenOptions={{
@@ -62,12 +60,21 @@ export function InitialLayout() {
           <Stack.Screen
             name='register'
             options={{
-              headerShown: false,
+              title: 'Create an account',
+              headerBackTitle: 'Login',
             }}
           />
 
           <Stack.Screen
             name='privacy'
+            options={{
+              headerBackTitle: 'Login',
+              presentation: 'modal',
+            }}
+          />
+
+          <Stack.Screen
+            name='(authenticated)/index'
             options={{
               headerShown: false,
             }}
