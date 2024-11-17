@@ -45,7 +45,7 @@ export function InitialLayout() {
 
   // Redirect to the correct route based on the user's authentication status.
   useEffect(() => {
-    if (!initialized || !loaded) return;
+    if (!initialized) return;
 
     const inAuthGroup = segments[0] === '(authenticated)';
 
