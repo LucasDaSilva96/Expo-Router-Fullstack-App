@@ -51,4 +51,3 @@ expo start
 - **Tailwind CSS**: For styling the application.
 - **NativeWind**: For integrating Tailwind CSS with React Native.
 - **SecureStore**: For securely storing tokens.
-- **Jest**: For running tests.
