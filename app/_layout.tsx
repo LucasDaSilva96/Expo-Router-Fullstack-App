@@ -1,6 +1,6 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Slot, Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -13,11 +13,19 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import Colors from '@/constants/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AuthProvider, useAuth } from '@/context/AuthContext';
+import { ActivityIndicator } from 'react-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export function InitialLayout() {
+  // Check if the user is authenticated and the app is initialized.
+  const { token, initialized } = useAuth();
+  // Get the router instance and the current route segments.
+  const router = useRouter();
+  const segments = useSegments();
+  // Load the custom fonts and the FontAwesome icon set.
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
@@ -28,14 +36,28 @@ export function InitialLayout() {
     if (error) throw error;
   }, [error]);
 
+  // Hide the splash screen when the app is ready.
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
 
-  if (!loaded) {
-    return null;
+  // Redirect to the correct route based on the user's authentication status.
+  useEffect(() => {
+    if (!initialized || !loaded) return;
+
+    const inAuthGroup = segments[0] === '(authenticated)';
+
+    if (token && !inAuthGroup) {
+      router.replace('/(authenticated)/(drawer)/(tabs)');
+    } else if (!token && inAuthGroup) {
+      router.replace('/home');
+    }
+  }, [token, initialized]);
+
+  if (!loaded || !initialized) {
+    return <ActivityIndicator size={'large'} />;
   }
 
   return (
@@ -51,7 +73,7 @@ export function InitialLayout() {
           }}
         >
           <Stack.Screen
-            name='index'
+            name='home'
             options={{
               headerShown: false,
             }}
@@ -86,5 +108,9 @@ export function InitialLayout() {
 }
 
 export default function RootLayoutNav() {
-  return <InitialLayout />;
+  return (
+    <AuthProvider>
+      <InitialLayout />
+    </AuthProvider>
+  );
 }

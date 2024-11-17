@@ -4,8 +4,12 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import { Alert } from 'react-native';
 import { DrawerToggleButton } from '@react-navigation/drawer';
+import { useAuth } from '@/context/AuthContext';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Layout() {
+  const { onLogout } = useAuth();
+
   return (
     <Tabs
       screenOptions={{
@@ -19,9 +23,9 @@ export default function Layout() {
         headerLeft: () => <DrawerToggleButton tintColor='#fff' />,
         // This is the headerRight button
         headerRight: () => (
-          <Link href={'/register'} replace className='px-1' asChild>
+          <TouchableOpacity onPress={onLogout} className='px-1'>
             <Ionicons size={28} name='log-out-outline' color='white' />
-          </Link>
+          </TouchableOpacity>
         ),
       }}
     >
