@@ -40,3 +40,15 @@ expo start
 ```
 
 2. Follow the instructions in the terminal to run the app on an emulator or physical device.
+
+## Tech Stack
+
+- **React Native**: For building the mobile application.
+- **Expo**: For development, building, and deploying the app.
+- **Expo Router**: For navigation within the app.
+- **Axios**: For making HTTP requests.
+- **OpenAI**: For generating images using the DALL-E model.
+- **Tailwind CSS**: For styling the application.
+- **NativeWind**: For integrating Tailwind CSS with React Native.
+- **SecureStore**: For securely storing tokens.
+- **Jest**: For running tests.
