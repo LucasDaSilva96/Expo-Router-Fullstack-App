@@ -74,7 +74,7 @@ export function InitialLayout() {
           />
 
           <Stack.Screen
-            name='(authenticated)/index'
+            name='(authenticated)/(drawer)'
             options={{
               headerShown: false,
             }}

@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-export default function Page() {
+export default function ActionTabPage() {
   return (
     <View>
-      <Text>I'm inside</Text>
+      <Text>Action</Text>
     </View>
   );
 }

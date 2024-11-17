@@ -34,7 +34,7 @@ export default function HomePage() {
           </TouchableOpacity>
         </Link>
 
-        <Link href={'/(authenticated)'} asChild>
+        <Link href={'/(authenticated)/(drawer)/(tabs)'} asChild>
           <TouchableOpacity className='bg-black py-3 rounded-md'>
             <Text className='text-center text-lg font-semibold text-slate-50'>
               Login
